@@ -79,3 +79,12 @@ class MangiMeta:
         return out
 
     def _kappa_component(self, series: Sequence[float], phase: float) -> float:
+        """Phase-shifted momentum component."""
+        if len(series) < self._config.period:
+            return 50.0
+        recent = list(series[-self._config.period :])
+        gain = sum(max(0, recent[i] - recent[i - 1]) for i in range(1, len(recent)))
+        loss = sum(max(0, recent[i - 1] - recent[i]) for i in range(1, len(recent)))
+        raw = gain - loss * math.tan(phase)
+        denom = (gain + loss * math.tan(phase)) or 1e-12
+        rs = raw / denom
