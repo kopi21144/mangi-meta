@@ -43,3 +43,12 @@ class TrendState:
     momentum: float = 0.0
     crossover_signal: int = 0  # -1 bear, 0 neutral, 1 bull
     epoch: int = 0
+
+
+class MangiMeta:
+    """
+    Trend oscillator contract: bounded dual-band kappa-phase with
+    northern-bound convergence and crossover signalling.
+    """
+
+    def __init__(self) -> None:
