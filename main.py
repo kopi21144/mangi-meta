@@ -70,3 +70,12 @@ class MangiMeta:
 
     def _smooth_series(self, series: Sequence[float], n: int) -> list[float]:
         if n < 1 or len(series) < n:
+            return list(series)
+        out: list[float] = []
+        for i in range(len(series)):
+            start = max(0, i - n + 1)
+            window = series[start : i + 1]
+            out.append(sum(window) / len(window))
+        return out
+
+    def _kappa_component(self, series: Sequence[float], phase: float) -> float:
