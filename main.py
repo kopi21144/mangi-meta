@@ -106,3 +106,12 @@ class MangiMeta:
         if not series:
             return self._state
 
+        smoothed = self._smooth_series(series, self._config.smooth)
+        kappa = self._kappa_component(smoothed, self._config.phase_rad)
+        vexel = self._vexel_component(smoothed)
+
+        combined = (
+            self._config.dom_weight * kappa +
+            self._config.sec_weight * vexel
+        )
+        value = self._clamp(combined)
