@@ -25,3 +25,12 @@ CROSSOVER_THRESHOLD = 0.0044
 @dataclass(frozen=True)
 class OscillatorConfig:
     """Immutable oscillator parameters."""
+    upper: float = UPPER_BAND
+    lower: float = LOWER_BAND
+    period: int = KAPPA_PERIOD
+    smooth: int = VEXEL_SMOOTHING
+    phase_rad: float = PHASE_OFFSET_RAD
+    conv_factor: float = CONVERGENCE_FACTOR
+    dom_weight: float = DOMINANT_WEIGHT
+    sec_weight: float = SECONDARY_WEIGHT
+
