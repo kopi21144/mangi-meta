@@ -97,3 +97,12 @@ class MangiMeta:
         window = list(series[-self._config.period :])
         high, low = max(window), min(window)
         span = (high - low) or 1e-12
+        last = window[-1]
+        pct = (last - low) / span
+        return self._config.lower + pct * (self._config.upper - self._config.lower)
+
+    def update(self, series: Sequence[float]) -> TrendState:
+        """Advance oscillator state from price/series data."""
+        if not series:
+            return self._state
+
