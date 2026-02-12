@@ -34,3 +34,12 @@ class OscillatorConfig:
     dom_weight: float = DOMINANT_WEIGHT
     sec_weight: float = SECONDARY_WEIGHT
 
+
+@dataclass
+class TrendState:
+    """Current trend oscillator state."""
+    value: float = 50.0
+    phase: float = 0.0
+    momentum: float = 0.0
+    crossover_signal: int = 0  # -1 bear, 0 neutral, 1 bull
+    epoch: int = 0
