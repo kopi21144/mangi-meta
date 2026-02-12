@@ -61,3 +61,12 @@ class MangiMeta:
     def config(self) -> OscillatorConfig:
         return self._config
 
+    @property
+    def state(self) -> TrendState:
+        return self._state
+
+    def _clamp(self, x: float) -> float:
+        return max(self._config.lower, min(self._config.upper, x))
+
+    def _smooth_series(self, series: Sequence[float], n: int) -> list[float]:
+        if n < 1 or len(series) < n:
