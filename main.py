@@ -142,3 +142,12 @@ class MangiMeta:
         return self._state.value
 
     def in_overbought(self) -> bool:
+        return self._state.value >= self._config.upper - (UPPER_BAND - LOWER_BAND) * 0.1
+
+    def in_oversold(self) -> bool:
+        return self._state.value <= self._config.lower + (UPPER_BAND - LOWER_BAND) * 0.1
+
+
+# ─── Pre-seeded series for standalone demo (no user input) ──────────────────
+DEMO_SERIES = [
+    104.2, 106.8, 105.1, 108.9, 107.3, 110.2, 109.0, 111.5, 112.1, 110.8,
