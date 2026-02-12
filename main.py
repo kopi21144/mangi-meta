@@ -133,3 +133,12 @@ class MangiMeta:
         )
         return self._state
 
+    def signal(self) -> int:
+        """Current crossover signal: -1, 0, or 1."""
+        return self._state.crossover_signal
+
+    def value(self) -> float:
+        """Current clamped oscillator value."""
+        return self._state.value
+
+    def in_overbought(self) -> bool:
