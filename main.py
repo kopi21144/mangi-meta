@@ -88,3 +88,12 @@ class MangiMeta:
         raw = gain - loss * math.tan(phase)
         denom = (gain + loss * math.tan(phase)) or 1e-12
         rs = raw / denom
+        return 50.0 + 50.0 * math.atan(rs * self._config.conv_factor) / (math.pi / 2)
+
+    def _vexel_component(self, series: Sequence[float]) -> float:
+        """Northern-bound convergence component."""
+        if len(series) < self._config.period:
+            return 50.0
+        window = list(series[-self._config.period :])
+        high, low = max(window), min(window)
+        span = (high - low) or 1e-12
