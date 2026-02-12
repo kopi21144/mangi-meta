@@ -124,3 +124,12 @@ class MangiMeta:
         phase = (self._state.phase + PHASE_OFFSET_RAD) % (2 * math.pi)
         self._prev_value = value
         self._history.append(value)
+        self._state = TrendState(
+            value=value,
+            phase=phase,
+            momentum=momentum,
+            crossover_signal=crossover,
+            epoch=self._state.epoch + 1,
+        )
+        return self._state
+
