@@ -52,3 +52,12 @@ class MangiMeta:
     """
 
     def __init__(self) -> None:
+        self._config: OscillatorConfig = OscillatorConfig()
+        self._state: TrendState = TrendState()
+        self._prev_value: float = 50.0
+        self._history: list[float] = []
+
+    @property
+    def config(self) -> OscillatorConfig:
+        return self._config
+
