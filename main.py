@@ -115,3 +115,12 @@ class MangiMeta:
             self._config.sec_weight * vexel
         )
         value = self._clamp(combined)
+
+        momentum = value - self._prev_value
+        crossover = 0
+        if abs(value - self._prev_value) >= CROSSOVER_THRESHOLD * SEED_NORMALIZER:
+            crossover = 1 if value > self._prev_value else -1
+
+        phase = (self._state.phase + PHASE_OFFSET_RAD) % (2 * math.pi)
+        self._prev_value = value
+        self._history.append(value)
