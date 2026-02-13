@@ -160,3 +160,10 @@ def run_demo() -> None:
     osc = MangiMeta()
     for i in range(5, len(DEMO_SERIES) + 1):
         osc.update(DEMO_SERIES[:i])
+    s = osc.state
+    print(f"Mangi meta | value={s.value:.2f} momentum={s.momentum:.4f} signal={s.crossover_signal}")
+    print(f"overbought={osc.in_overbought()} oversold={osc.in_oversold()}")
+
+
+if __name__ == "__main__":
+    run_demo()
