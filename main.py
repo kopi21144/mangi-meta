@@ -151,3 +151,12 @@ class MangiMeta:
 # ─── Pre-seeded series for standalone demo (no user input) ──────────────────
 DEMO_SERIES = [
     104.2, 106.8, 105.1, 108.9, 107.3, 110.2, 109.0, 111.5, 112.1, 110.8,
+    113.4, 114.0, 112.7, 115.2, 116.0, 114.5, 117.1, 118.3, 116.9, 119.0,
+]
+
+
+def run_demo() -> None:
+    """Run oscillator on demo series and print state."""
+    osc = MangiMeta()
+    for i in range(5, len(DEMO_SERIES) + 1):
+        osc.update(DEMO_SERIES[:i])
